@@ -37,7 +37,6 @@ const FilterBtns = ({ setOpen, open }) => {
 
     open && setOpen(!open);
   };
-  console.log(currentSec);
 
   // useEffect(() => {
   //   dispatch(fetchBooksWithExactCathegory(currentSec, page));
