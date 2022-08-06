@@ -34,12 +34,14 @@ const FilterBtns = ({ setOpen, open }) => {
   const handleChange = async (category) => {
     dispatch(changeCurrentSec(category));
     dispatch(fetchBooksWithExactCathegory(category, page));
+
     open && setOpen(!open);
   };
+  console.log(currentSec);
 
   // useEffect(() => {
   //   dispatch(fetchBooksWithExactCathegory(currentSec, page));
-  // }, [page, currentSec, dispatch]);
+  // }, [currentSec, page, dispatch]);
 
   return (
     <>

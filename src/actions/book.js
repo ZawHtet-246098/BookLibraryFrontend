@@ -23,6 +23,7 @@ export const fetchBooksWithExactCathegory =
     try {
       dispatch(startLoading());
       const { data } = await api.getBooksByExactCategory(category, page);
+      console.log(data);
       await dispatch(getBooksByExactPageAndCategory(data));
       window.scrollTo({ top: 0 });
     } catch (error) {

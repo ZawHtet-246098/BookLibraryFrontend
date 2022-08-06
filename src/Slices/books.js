@@ -46,6 +46,7 @@ const bookSlice = createSlice({
     getExactBook: (state, action) => {
       state.exactBookData = action.payload.data;
       state.exactBookId = action.payload.id;
+      state.category = action.payload.data.category;
 
       localStorage.setItem(
         "exactBook",
