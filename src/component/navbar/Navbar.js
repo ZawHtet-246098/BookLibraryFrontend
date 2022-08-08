@@ -26,6 +26,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   const { user, authData, darkMode } = useSelector((store) => store.auth);
+
   const [open, setOpen] = useState(false);
 
   const creactCommonUser = user ? user : authData;

@@ -22,8 +22,15 @@ const Home = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { books, loading, page, totalNum, currentSec, booksbyCategory } =
-    useSelector((store) => store.books);
+  const {
+    books,
+    loading,
+    page,
+    totalNum,
+    currentSec,
+    subLoading,
+    booksbyCategory,
+  } = useSelector((store) => store.books);
   const { darkMode } = useSelector((store) => store.auth);
 
   useEffect(() => {
@@ -90,7 +97,7 @@ const Home = () => {
                 container
                 spacing={2}
               >
-                {loading ? (
+                {subLoading ? (
                   <Loader />
                 ) : (
                   <>
@@ -142,7 +149,7 @@ const Home = () => {
                   </>
                 )}
               </Grid>
-              {loading ? (
+              {subLoading ? (
                 <Loader />
               ) : (
                 <Stack

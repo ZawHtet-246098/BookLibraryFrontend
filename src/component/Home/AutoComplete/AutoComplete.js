@@ -4,9 +4,8 @@ import "./style.css";
 
 import { changeSearchValue } from "../../../Slices/books";
 
-const AutoComplete = ({ options }) => {
+const AutoComplete = ({ options, value, setValue }) => {
   const dispatch = useDispatch();
-  const [value, setValue] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const suggestions = options?.filter((option) =>
     option.toLowerCase().includes(value.toLowerCase())

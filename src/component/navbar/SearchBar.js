@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useStyles from "./styles";
 import { Button } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
@@ -14,17 +14,25 @@ const SearchBar = ({ width }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { darkMode } = useSelector((store) => store.auth);
+  const [value, setValue] = useState("");
+
   const { allBooksName, searchValue } = useSelector((store) => store.books);
 
   const handleClick = () => {
     dispatch(fetchFindBook(searchValue, navigate));
     dispatch(deleteSearchValue());
+    setValue("");
   };
 
   const classes = useStyles();
   return (
     <div className={classes.btnWrapper}>
-      <AutoComplete style={{ width: `${width}` }} options={allBooksName} />
+      <AutoComplete
+        style={{ width: `${width}` }}
+        options={allBooksName}
+        value={value}
+        setValue={setValue}
+      />
       <Button
         // className={classes.searchIcon}
         onClick={handleClick}

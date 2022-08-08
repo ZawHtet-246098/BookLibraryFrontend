@@ -4,6 +4,7 @@ const initialState = {
   books: null,
   booksbyCategory: null,
   loading: true,
+  subLoading: false,
   page: 1,
   category: "Technology",
   currentSec: "All Books",
@@ -38,7 +39,10 @@ const bookSlice = createSlice({
       state.booksbyCategory = action.payload.data;
       state.totalNum = action.payload.numberOfPages;
       localStorage.setItem("similarBooks", JSON.stringify(action.payload.data));
-      state.loading = false;
+      state.subLoading = false;
+    },
+    subLoadingOpen: (state, action) => {
+      state.subLoading = true;
     },
     changePage: (state, action) => {
       state.page = action.payload;
@@ -64,6 +68,9 @@ const bookSlice = createSlice({
       state.category = action.payload.category;
       state.searchValue = "";
     },
+    setBookPageToOrigin: (state, action) => {
+      state.page = 1;
+    },
   },
 });
 
@@ -79,5 +86,7 @@ export const {
   changeSearchValue,
   getSearchBookData,
   deleteSearchValue,
+  subLoadingOpen,
+  setBookPageToOrigin,
 } = bookSlice.actions;
 export default bookSlice.reducer;

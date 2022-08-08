@@ -22,7 +22,11 @@ import ClearAllIcon from "@mui/icons-material/ClearAll";
 
 import useStyles from "../style";
 
-import { changeCurrentSec, startLoading } from "../../../Slices/books";
+import {
+  changeCurrentSec,
+  startLoading,
+  setBookPageToOrigin,
+} from "../../../Slices/books";
 import { fetchBooksWithExactCathegory } from "../../../actions/book";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -30,17 +34,19 @@ const FilterBtns = ({ setOpen, open }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { currentSec, page } = useSelector((store) => store.books);
+  console.log(page);
 
   const handleChange = async (category) => {
     dispatch(changeCurrentSec(category));
-    dispatch(fetchBooksWithExactCathegory(category, page));
+    dispatch(setBookPageToOrigin());
+    // dispatch(fetchBooksWithExactCathegory(category, page));
 
     open && setOpen(!open);
   };
 
-  // useEffect(() => {
-  //   dispatch(fetchBooksWithExactCathegory(currentSec, page));
-  // }, [currentSec, page, dispatch]);
+  useEffect(() => {
+    dispatch(fetchBooksWithExactCathegory(currentSec, page));
+  }, [currentSec, page, dispatch]);
 
   return (
     <>

@@ -5,6 +5,7 @@ import {
   getExactBook,
   getAllNames,
   getSearchBookData,
+  subLoadingOpen,
 } from "../Slices/books";
 import { startLoading, endLoading } from "../Slices/books";
 
@@ -21,7 +22,9 @@ export const fetchPreviewBooks = () => async (dispatch) => {
 export const fetchBooksWithExactCathegory =
   (page, category) => async (dispatch) => {
     try {
-      dispatch(startLoading());
+      // dispatch(startLoading());
+      dispatch(subLoadingOpen());
+
       const { data } = await api.getBooksByExactCategory(category, page);
       console.log(data);
       await dispatch(getBooksByExactPageAndCategory(data));
